@@ -17,7 +17,7 @@ def date_pars(reg_exp)
 end
 
 def contains_calling_core?(str)
-  !!(str =~ /Calling core/i)
+  str =~ /Calling core/i
 end
 
 def task_3(logs)
@@ -26,6 +26,7 @@ def task_3(logs)
   execute_pars = date_pars(/\A(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d)/)
   logs.each_line do |line|
     next unless contains_calling_core?(line)
+
     time = Time.strptime(execute_pars.call(line), '%Y-%m-%d %H:%M:%S.%L').to_f
     result_dtime << (time - time_previos).round(1).to_s unless time_previos.nil?
     time_previos = time

@@ -8,7 +8,7 @@ logs = <<~LGSINPUT
 LGSINPUT
 
 def contains_error?(reg_exp)
-  ->(line) { !!(line =~ reg_exp) }
+  ->(line) { line =~ reg_exp }
 end
 
 def task_1(logs)
