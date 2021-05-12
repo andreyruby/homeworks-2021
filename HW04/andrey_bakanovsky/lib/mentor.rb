@@ -15,6 +15,8 @@ class Mentor
     "#{notification.sender.name[0]}: #{notification.text}"
   end
 
+  private :print_notification
+
   def add_homework(title, description, student)
     homework = Homework.new(title, description)
     homework.mentor = self
@@ -25,8 +27,14 @@ class Mentor
     homework
   end
 
+  def print_head_notification
+    puts "#{surname} #{name[0]}. mentor's notifications:" 
+  end
+
+  private :print_head_notification
+  
   def read_notifications!
-    puts "#{surname} #{name[0]}. mentor's notifications:"
+    print_head_notification
     if @notifications.empty? then puts 'No notifications.'
     else
       @notifications.each do |notification|
@@ -51,6 +59,8 @@ class Mentor
     )
     puts('-' * 116)
   end
+
+  private :print_head_table
 
   def check_status_homeworks
     print_head_table
