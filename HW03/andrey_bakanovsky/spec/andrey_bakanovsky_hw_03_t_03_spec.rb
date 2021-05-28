@@ -41,16 +41,16 @@ RSpec.describe 'hw_03_t_03' do
   end
 
   describe 'date_pars' do
+    let(:execute_pars) { date_pars(/\A(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d)/) }
+
     context 'when line contains time' do
       it 'reaturns string datetime' do
-        execute_pars = date_pars(/\A(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d)/)
         expect(execute_pars.call(log_one_line_colling)).to eq(output_datetime)
       end
     end
 
     context 'when line doesn\'t contain time' do
       it 'reaturns empty string' do
-        execute_pars = date_pars(/\A(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d)/)
         expect(execute_pars.call(log_without_datetime)).to be_nil
       end
     end
