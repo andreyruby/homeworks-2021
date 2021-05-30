@@ -12,8 +12,7 @@ RSpec.describe ArrayRefine, Array do
       let(:result_array) { [12, 21, 94, 5, -4] }
 
       it 'returns a new array' do
-        new_array = test_array.my_map { |x| x + 1 }
-        expect(new_array).to match_array(result_array)
+        expect(test_array.my_map { |x| x + 1 }).to match_array(result_array)
       end
 
       it 'don\'t modify original array' do
@@ -71,8 +70,7 @@ RSpec.describe ArrayRefine, Array do
   describe '#my_each' do
     context 'when calls for array' do
       it 'returns a new array' do
-        new_array = test_array.my_each { |x| x }
-        expect(new_array).to match_array(test_array)
+        expect(test_array.my_each { |x| x }).to match_array(test_array)
       end
 
       it 'don\'t modify original array' do
@@ -80,8 +78,7 @@ RSpec.describe ArrayRefine, Array do
       end
 
       it 'does not return new elements after operation in the block' do
-        new_array = test_array.my_each { |x| x * 0.314 }
-        expect(new_array).to match_array(test_array)
+        expect(test_array.my_each { |x| x * 0.314 }).to match_array(test_array)
       end
     end
 
