@@ -8,27 +8,35 @@ RSpec.describe 'hw_03_t_03' do
   let(:output_datetime) { '2018-04-23 17:17:49.7' }
   let(:log_without_datetime) { '--- WhenLogDoesNotContainTimeString' }
 
-  logs_calling = <<~LGSOUTPUT0
-    2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-    2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
-  LGSOUTPUT0
+  let(:logs_calling) do
+    <<~LGSOUTPUT0
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+      2018-04-23 17:18:38.8 ubuntu-xenial[14319] Debug - Calling core with action: messages
+    LGSOUTPUT0
+  end
 
-  logs_without_calling = <<~LGSOUTPUT1
-    2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
-    2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
-  LGSOUTPUT1
+  let(:logs_without_calling) do
+    <<~LGSOUTPUT1
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - connecting to: 10.6.246.101
+      2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
+    LGSOUTPUT1
+  end
 
-  logs_one_calling = <<~LGSOUTPUT2
-    2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-    2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
-  LGSOUTPUT2
+  let(:logs_one_calling) do
+    <<~LGSOUTPUT2
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+      2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
+    LGSOUTPUT2
+  end
 
-  logs_multi_calling = <<~LGSOUTPUT3
-    2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-    2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
-    2018-04-23 17:18:13.7 ubuntu-xenial[14319] Debug - Calling core with action: event
-    2018-04-23 17:20:50.1 ubuntu-xenial[14319] Debug - Calling core with action: event
-  LGSOUTPUT3
+  let(:logs_multi_calling) do
+    <<~LGSOUTPUT3
+      2018-04-23 17:17:49.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+      2018-04-23 17:17:49.8 ubuntu-xenial[14319] Debug - docker event processed
+      2018-04-23 17:18:13.7 ubuntu-xenial[14319] Debug - Calling core with action: event
+      2018-04-23 17:20:50.1 ubuntu-xenial[14319] Debug - Calling core with action: event
+    LGSOUTPUT3
+  end
 
   describe 'contains_calling_core?' do
     it 'reaturns true' do
